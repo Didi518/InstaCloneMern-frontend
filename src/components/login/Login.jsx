@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { login } from '../../app/auth/AuthAction';
 
@@ -35,8 +35,8 @@ export default function Login() {
 
   useEffect(() => {
     if (isLoginSuccess) {
-      navigate('/accueil');
       toast.success(message);
+      navigate('/accueil');
     } else {
       navigate('/');
     }
@@ -50,6 +50,7 @@ export default function Login() {
             <div className="authbox">
               <h1 className="brand-logo text-center">Instagram</h1>
               <br />
+              <ToastContainer />
               <div className="col-12">
                 <form className="w-100" onSubmit={formik.handleSubmit}>
                   <div className="input-group">

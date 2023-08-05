@@ -7,6 +7,7 @@ import ForgotPassword from './components/forgotPassword/ForgotPassword';
 import MainLayout from './components/mainLayout/MainLayout';
 import Home from './components/home/Home';
 import ResetPassword from './components/resetPassword/ResetPassword';
+import CreatePost from './components/createPost/CreatePost';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/reinitialisation/:token" element={<ResetPassword />} />
         <Route element={<MainLayout />}>
           <Route exact path="/accueil" element={<Home />} />
+          <Route exact path="/nouveau-post" element={<CreatePost />} />
         </Route>
       </Routes>
     </Router>

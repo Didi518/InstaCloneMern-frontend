@@ -23,16 +23,16 @@ export default function Header() {
             <img className="icon_1" src={image1} alt="accueil" />
           </Link>
           <Link to="/explorer">
-            <img className="icon_1" src={image2} alt="accueil" />
+            <img className="icon_1" src={image2} alt="explorer" />
           </Link>
-          <Link to="/creer">
-            <img className="icon_1" src={image5} alt="accueil" />
+          <Link to="/nouveau-post">
+            <img className="icon_1" src={image5} alt="créer" />
           </Link>
           <Link to="/enregistrer">
-            <img className="icon_1" src={image3} alt="accueil" />
+            <img className="icon_1" src={image3} alt="enregistrer" />
           </Link>
           <Link to="/profil">
-            <img className="icon_11" src={image4} alt="accueil" />
+            <img className="icon_11" src={image4} alt="profil" />
           </Link>
           <button className="logoutbtn" type="submit">
             Déconnexion

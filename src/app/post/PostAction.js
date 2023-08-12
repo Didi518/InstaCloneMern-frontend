@@ -42,3 +42,58 @@ export const dislikePost = createAsyncThunk(
     }
   }
 );
+
+export const savePost = createAsyncThunk(
+  'post/savePost',
+  async (post, thunkAPI) => {
+    try {
+      return PostService.savePost(post);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const unSavePost = createAsyncThunk(
+  'post/unSavePost',
+  async (post, thunkAPI) => {
+    try {
+      return PostService.unSavePost(post);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const createComment = createAsyncThunk(
+  'post/createComment',
+  async (comment, thunkAPI) => {
+    try {
+      return PostService.createComment(comment);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  'post/deleteComment',
+  async (comment, thunkAPI) => {
+    try {
+      return PostService.deleteComment(comment);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  'post/deletePost',
+  async (postId, thunkAPI) => {
+    try {
+      return PostService.deletePost(postId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

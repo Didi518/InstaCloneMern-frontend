@@ -20,7 +20,7 @@ export default function Login() {
   const navigate = useNavigate();
   const authState = useSelector((state) => state.auth);
 
-  const { user, isError, isLoading, isLoginSuccess, message } = authState;
+  const { isLoginSuccess, message } = authState;
 
   const formik = useFormik({
     initialValues: {
@@ -40,7 +40,7 @@ export default function Login() {
     } else {
       navigate('/');
     }
-  }, [navigate, isError, isLoading]);
+  });
 
   return (
     <div className="container">

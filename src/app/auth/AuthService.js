@@ -15,6 +15,7 @@ const login = async (user) => {
     localStorage.setItem('token', JSON.stringify(response.data.access_token));
     localStorage.setItem('utilisateur', JSON.stringify(response.data.user));
   }
+  window.location.reload(true);
   return response.data;
 };
 

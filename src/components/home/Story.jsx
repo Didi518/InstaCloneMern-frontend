@@ -1,73 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import ShowStoryModal from '../modals/ShowStoryModal';
+import { config } from '../../utils/utils';
+import ViewStory from '../modals/ViewStory';
 
 export default function Story() {
+  const [addStoryModal, setAddStoryModal] = useState(false);
+  const [openStory, setOpenStory] = useState(false);
+  const [stories, setStories] = useState([]);
+  const [currentStory, setCurrentStory] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      const allStories = await axios.get(
+        'http://localhost:8080/api/users/get_story',
+        config
+      );
+      setStories(allStories.data.userStories);
+      console.log(allStories);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="story">
       <div className="story-box">
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/QpUEcfi.jpg"
-              alt=""
-            />
-            <p className="story_H">Loyd</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/LBRXhIq.jpg"
-              alt=""
-            />
-            <p className="story_H">Pinky</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/ARMxyC4.jpg"
-              alt=""
-            />
-            <p className="story_H">Jason</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/QpUEcfi.jpg"
-              alt=""
-            />
-            <p className="story_H">Loyd</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/LBRXhIq.jpg"
-              alt=""
-            />
-            <p className="story_H">Pinky</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
-            <img
-              className="story_image"
-              src="https://i.imgur.com/ARMxyC4.jpg"
-              alt=""
-            />
-            <p className="story_H">Jason</p>
-          </button>
-        </div>
-        <div className="story_1">
-          <button className="storybtn">
+        {stories.length > 0
+          ? stories &&
+            stories.map((story, index) => (
+              <React.Fragment key={index}>
+                <div className="story_1">
+                  <button
+                    className="storybtn"
+                    onClick={() => {
+                      setOpenStory(true);
+                      setCurrentStory(story.stories);
+                    }}
+                  >
+                    <img className="story_image" src={story.pic} alt="" />
+                    <p className="story_H">Loyd</p>
+                  </button>
+                </div>
+              </React.Fragment>
+            ))
+          : null}
+        {console.log(stories)}
+        <div
+          className="story_1"
+          style={{ marginTop: '-15px', padding: '10px' }}
+        >
+          <button className="storybtn" onClick={() => setAddStoryModal(true)}>
             <i className="fa fa-plus-circle story_image"></i>
-            <i className="story_S">Story</i>
+            <i className="story_S" style={{ display: 'flex' }}>
+              Ajouter Story
+            </i>
           </button>
         </div>
       </div>
@@ -79,6 +66,15 @@ export default function Story() {
         className="fas fa-chevron-circle-right icon-style1 nav-right"
         style={{ fontSize: '24px' }}
       ></i>
+      <ShowStoryModal
+        addStoryModal={addStoryModal}
+        setAddStoryModal={setAddStoryModal}
+      />
+      <ViewStory
+        openStory={openStory}
+        setOpenStory={setOpenStory}
+        story={currentStory}
+      />
     </div>
   );
 }

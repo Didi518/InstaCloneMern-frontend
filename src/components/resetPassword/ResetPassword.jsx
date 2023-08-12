@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { newPassword } from '../../app/auth/AuthAction';
@@ -11,9 +11,8 @@ export default function ResetPassword() {
   const authState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { token } = useParams();
-  const navigate = useNavigate();
 
-  const { isError, isPasswordSuccess, message } = authState;
+  const { isError, isPasswordSuccess } = authState;
   const tokenData = { password, token };
 
   const updatePassword = async (e) => {

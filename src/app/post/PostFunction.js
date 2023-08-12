@@ -3,3 +3,8 @@ export const EditData = (data, id, posts) => {
   console.log(newData);
   return newData;
 };
+
+export const DeleteData = (data, id) => {
+  const newData = data.filter((item) => item._id !== id);
+  return newData;
+};

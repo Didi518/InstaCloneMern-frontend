@@ -11,7 +11,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const postState = useSelector((state) => state.post);
 
-  const { posts, isError, isPostSuccess, message } = postState;
+  const { posts } = postState;
 
   const currentUser = getUserFromLocalStorage;
 
